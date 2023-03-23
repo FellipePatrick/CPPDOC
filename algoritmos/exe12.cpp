@@ -1,29 +1,36 @@
 #include <iostream>
+
 using namespace std;
 
-int main(){
-	int numeroVelho, numeroAtual, posicao;
-	int vetor[5] =  {10, 90, 1, 3, 5};
-	int lista[5];	
-	numeroVelho = 1;
-	for(int i = 0; i < 5; i++){
-		if(vetor[i] > numeroVelho){
-			numeroVelho = numeroVelho;
-		}else{
-			numeroVelho = vetor[i];
-		}
-	}
-	for(int i = 0; i < 5; i++){
-		posicao = vetor[i];
-		for(int x = 0; x < 5; x++){
-			if(vetor[x] > numeroVelho ){
-				numeroAtual = numeroVelho;
-			}else {
-				numeroAtual = vetor[x];
-			}
-			cout << numeroAtual << " " << vetor[x] << endl;
-		}
-		lista[i] = numeroAtual;
-		
-	}
+void selectionSort(int arr[], int n) {
+    int i, j, min_idx;
+
+    // loop através de todos os elementos do array
+    for (i = 0; i < n-1; i++) {
+        // Encontra o menor elemento no array desordenado
+        min_idx = i;
+        for (j = i+1; j < n; j++) {
+            if (arr[j] < arr[min_idx])
+                min_idx = j;
+        }
+
+        // Troca o menor elemento com o primeiro elemento do array desordenado
+        int temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
+    }
 }
+
+int main() {
+    int arr[] = {10, 8, 2, 5, 3, 6};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    selectionSort(arr, n);
+
+    cout << "Lista ordenada: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+
+    return 0;
+}
+
