@@ -7,6 +7,6 @@ int main(){
 	cin >> total;
 	horas = total/3600;
 	minutos =(total%3600)/60;
-	segundos = ((total%3600)/60)/60;
+	segundos = (total%3600)%60;
 	cout << horas << ":hrs " << minutos << ":min " << segundos << ":sec";
 }
