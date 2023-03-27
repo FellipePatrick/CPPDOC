@@ -18,9 +18,9 @@ int main(){
 	cin >> n3;
 	cout << endl << "type it 'c' for order crescent or 'd' for descending: ";
 	cin >> character;
-	bool condition1 = n1 > n2 && n1 > n3;
-	bool condition2 = n2 > n1 && n2 > n3;
-	bool condition3 = n3 > n1 && n3 > n2;
+	bool condition1 = (n1 > n2 or n1 == n2) && (n1 > n3 or n1 == n3);
+	bool condition2 = (n2 > n1 or n2 == n1) && (n2 > n3 or n2 == n3);
+	bool condition3 = (n3 > n1 or n3 == n1) && (n3 > n2 or n3 == n2);
 	
 	if(condition1){
 		if(n2 > n3){
