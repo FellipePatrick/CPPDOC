@@ -4,22 +4,27 @@
 */
 
 #include <iostream>
-
 using namespace std;
-
 int main(){
-	float numero, i = 1, primo;
+	int numero, inicial;
+	float primo;
+	bool res = true;
 	cout << "Digite um numero: ";
 	cin >> numero;
-	if(numero > 11){
-		while(true){
-			primo = numero/i;
-			if(primo != 0){
-				return false;
+	inicial = numero;
+	if(numero > 0){ 
+		while(res){
+			primo = numero%2;
+			if(primo != 0 && numero > 11){
+				cout << endl << primo;
+				res = false;
+			}else{
+				numero++;
 			}
-			i++;
 		}
-		cout << endl << "O proximo numero primo depois de " << numero << " é: " << primo;
+		cout << endl << "O proximo numero primo depois de " << inicial << " é: " << numero;
+	}else{
+		cout << endl << "Digite um numero maior que 0!";
 	}
 	return 0;
 }
