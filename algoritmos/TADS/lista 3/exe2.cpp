@@ -33,7 +33,9 @@ int main(){
 			cin >> valorMulta;
 			dividaMotorista += valorMulta;
 		}
+		cout << endl << "A divida da desse motorista com o N da carteira: " << resNCarteira << " é: " << dividaMotorista << "R$" << endl;;
 		totalRecursos += dividaMotorista;
+		dividaMotorista = 0;
 		cont ++;
 	}
 	cout << endl << "O total de recursos é: " << totalRecursos;

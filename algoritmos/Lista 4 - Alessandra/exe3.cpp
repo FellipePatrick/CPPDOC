@@ -20,56 +20,80 @@ int main(){
 	switch(res){
 		case 1:
 			mes1 = 0;
+			break;
 		case 2:
 			mes1 = 31;
+			break;
 		case 3:
 			mes1 = 59;
+			break;
 		case 4:
 			mes1 = 90;
+			break;
 		case 5:
 			mes1 = 120;
+			break;
 		case 6:
 			mes1 = 151;
+			break;
 		case 7:
 			mes1 = 181;
+			break;
 		case 8:
 			mes1 = 212;
+			break;
 		case 9:
 			mes1 = 243;
+			break;
 		case 10:
 			mes1 = 273;
+			break;
 		case 11:
 			mes1 = 304;
+			break;
 		case 12:
 			mes1 = 334;
+			break;
 	}
 	cout << endl << "Digite o mes da segunda data: ";
 	cin >> res;
-		switch(res){
+	switch(res){
 		case 1:
-			mes2 = 0;
+			mes1 = 0;
+			break;
 		case 2:
-			mes2 = 31;
+			mes1 = 31;
+			break;
 		case 3:
-			mes2 = 59;
+			mes1 = 59;
+			break;
 		case 4:
-			mes2 = 90;
+			mes1 = 90;
+			break;
 		case 5:
-			mes2 = 120;
+			mes1 = 120;
+			break;
 		case 6:
-			mes2 = 151;
+			mes1 = 151;
+			break;
 		case 7:
-			mes2 = 181;
+			mes1 = 181;
+			break;
 		case 8:
-			mes2 = 212;
+			mes1 = 212;
+			break;
 		case 9:
-			mes2 = 243;
+			mes1 = 243;
+			break;
 		case 10:
-			mes2 = 273;
+			mes1 = 273;
+			break;
 		case 11:
-			mes2 = 304;
+			mes1 = 304;
+			break;
 		case 12:
-			mes2 = 334;
+			mes1 = 334;
+			break;
 	}
 	cout << endl << "Digite o dia da primeira data: ";
 	cin >> dia1;
