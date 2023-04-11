@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int opcao;
+    float quadrado, circulo, triangulo, retangulo, trapezio;
+    bool res = true;
+    while(res == true){
+      cout << endl << "Escolha uma opção:" << endl << "1-Quadrado " << endl << "2-Circulo" << endl << "3-Triangulo" << endl << "4-Retangulo" << endl << "5-Trapezio" << endl << "6-Sair " << endl;
+      cin >> opcao;
+      if(opcao >= 1 && opcao < 6){
+          if(opcao == 1){
+              cout << endl << "AQUI TEM A AREA DO QUADRADO";
+          }else if(opcao == 2){
+              cout << endl << "AQUI TEM A AREA DE UM CIRCULO";
+          }else if(opcao == 3){
+              cout << endl << "AQUI TEM A AREA DO TRIANGULO";
+          }else if(opcao == 4){
+              cout << endl << "AQUI TEM A AREA DO RETANGULO";
+          }else if(opcao == 5){
+              cout << endl << "AQUI TEM A AREA DO TRAPEZIO";
+          }
+      }else if(opcao == 6){
+          res = false;
+      }
+    }
+    return 0;
+}
