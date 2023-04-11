@@ -11,25 +11,31 @@ negativo, solicitar que o usuário digite novamente até que o número seja positiv
 using namespace std;
 
 int main(){
-  int n1, n2, n3, n4, soma = -1;
+  float n1, n2, n3, n4, soma = 1, quadrado, cubo;
   bool res = true;
   while(res == true){
-     while(soma < 0){
-      cout << endl << "Digite o primeiro valor: ";
-      cin >> n1;
-      cout << endl << "Digite o segundo valor: ";
-      cin >> n2;
-      cout << endl << "Digite o terceiro valor: ";
-      cin >> n3;
-      cout << endl << "Digite o quarto valor: ";
-      cin >> n4;
-      soma = n1 + n2 + n3 + n4;
-      cout << endl << "oiiiiiiiiii" << soma;
-      if(soma == 0) {
-          res = false; 
-      }
-  }
-  cout << endl << "oi"; 
+    if(soma != 0){
+        cout << endl << "Digite o primeiro valor: ";
+        cin >> n1;
+        cout << endl << "Digite o segundo valor: ";
+        cin >> n2;
+        cout << endl << "Digite o terceiro valor: ";
+        cin >> n3;
+        cout<< endl << "Digite o quarto valor: ";
+        cin >> n4;
+        soma = n1 + n2 + n3 + n4;
+        if(soma > 0){
+          cout << "VALOR   1  //  VALOR   2  //  VALOR   3  //  VALOR   4";
+          cout << endl << "QUADRADO   " << n1 * n1 << "  //  " << n2 * n2 << "  //  " << n3 * n3 << "  //  " << n4 * n4;
+          cout << endl << "CUBO   " << n1 * n1 * n1<< "  //  " << n2 * n2 * n2 << "  //  " << n3 * n3 * n3 << "  //  " << n4 * n4 * n4 << endl;
+        }else if(soma < 0){
+          soma = 1;
+          cout << endl << "A soma deu negativa, por favor digite numeros para que essa seja positiva!" << endl;
+        }
+    }else{
+      cout << endl << "Você so digitou 0 e com isso o programa se encerra!";
+      res = false;
+    }
   }
   return 0;
 }
