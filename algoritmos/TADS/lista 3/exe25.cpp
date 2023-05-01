@@ -22,60 +22,59 @@ int main(){
 			switch(cont){
 				case 1:
 					if(res == q1){
-						qtdErros+=1;	
+						qtdAcertos+=1;	
 					}else{
-						qtdAcertos +=1;
+						qtdErros +=1;
 					}
 					break;
 				case 2:
 					if(res == q2){
-						qtdErros+=1;	
+						qtdAcertos+=1;	
 					}else{
-						qtdAcertos +=1;
+						qtdErros +=1;
 					}
 					break;
 				case 3:
 					if(res == q3){
-						qtdErros+=1;	
+						qtdAcertos+=1;	
 					}else{
-						qtdAcertos +=1;
+						qtdErros +=1;
 					}
 					break;
 				case 4:
 					if(res == q4){
-						qtdErros+=1;	
+						qtdAcertos+=1;	
 					}else{
-						qtdAcertos +=1;
+						qtdErros +=1;
 					}
 					break;
 				case 5:
 					if(res == q5){
-						qtdErros+=1;	
+						qtdAcertos+=1;	
 					}else{
-						qtdAcertos +=1;
+						qtdErros +=1;
 					}
 					break;
 			}
 			cont ++;
 			if(cont == 6){
-				cout << endl << "A quantidade de acertos desse aluno foi: " << qtdErros << " e a quantidade de erros foi: " << qtdAcertos;
+				cout << endl << "A quantidade de acertos desse aluno foi: " << qtdAcertos << " e a quantidade de erros foi: " << qtdErros;
 				flag = false;
 				cont = 1;
 			}
 		}while(flag);
-		cout << endl << "Ainda tem alunos para a verificação(s-n): ";
+		cout << endl << endl << "Ainda tem alunos para a verificação(s-n): ";
 		cin >> res;
 		mediaTurma += qtdAcertos;
 		if(res == 'n'){
 			fla = false;
+		}else{
+			globalPoint ++;	
+			qtdAcertos, qtdErros = 0;
+			cont = 1;		
 		}
-		globalPoint ++;	
-		qtdAcertos, qtdErros = 0;
-		flag = true;
-		cont = 1;	
 	}while(fla);
-	cout << endl << "OLA MUNDO";
 	mediaTurma = mediaTurma/globalPoint;
-	cout << endl << " A media da turma foi de: " << mediaTurma;
+	cout << endl << "A media da turma foi de: " << mediaTurma << " acertos por aluno";
 	return 0;
 }
