@@ -1,48 +1,49 @@
 /*
-	Elabore um algoritmo que leia dois vetores de inteiros X e Y, cada um com 5 elementos (n„o permita
+	Elabore um algoritmo que leia dois vetores de inteiros X e Y, cada um com 5 elementos (n√£o permita
 elementos repetidos dentro de um mesmo vetor). Em seguida calcule e escreva os seguintes vetores
 resultantes:
-	a. Soma: soma dos elementos de X e Y de mesmo Ìndice;
-	b. Dist‚ncia: dist‚ncia entre os elementos de X e Y de mesmo Ìndice;
+	a. Soma: soma dos elementos de X e Y de mesmo √≠ndice;
+	b. Dist√¢ncia: dist√¢ncia entre os elementos de X e Y de mesmo √≠ndice;
 */
-
 #include <iostream>
-
 using namespace std;
-
 int main(){
-	int X[5], y[5], x, n, i = 0;
+	int X[5], y[5], x, n, i = 0, soma = 0, distancia = 0;
 	bool dif = true;
 	for(x=0;x<5;x++){
 		do{
 			cout << "\nInforme o valor da posicao " << x << " no vetor x: ";
 			cin >> n;
-			do{
-				if(n == y[i]){
-					dif = false;
-					cout << "\nJa existe esse valor!";
-				}
-				i++;
-			}while(i <= x && dif == true);
+      dif = true;
+			for(i = 0; i <= x; i++){
+          if(X[i] == n){
+              dif = false;
+              cout << "\nJa existe esse valor!";
+          }
+      }
 		}while(dif == false);
 		X[x] = n;
-		dif = true;
-		do{
+    do{
 			cout << "\nInforme o valor da posicao " << x << " no vetor y: ";
 			cin >> n;
-			do{
-				if(n == y[i]){
-					dif = false;
-					cout << "\nJa existe esse valor!";
-				}
-				i++;
-			}while(i <= x && dif == true );
+      dif = true;
+			for(i = 0; i <= x; i++){
+          if(y[i] == n){
+              dif = false;
+              cout << "\nJa existe esse valor!";
+          }
+      }
 		}while(dif == false);
 		y[x] = n;
+    soma += (y[x]+X[x]);
 	}
-	cout << "\nA soma\t\tA distancia";
+	cout << "\nA soma\t" << soma << "\n";
 	for(x = 0; x < 5; x++){
-		cout << "\n"<< X[x] + y[x] << "\t\t" << X[x] - y[x];
+		distancia = X[x] - y[x];
+    if(distancia < 0){
+        distancia *=(-1);
+    }
+    cout << "\n\tA distancia entre "<< X[x]<< " e " << y[x] << ": " << distancia << "\n";
 	}
 	return 0;
 }
