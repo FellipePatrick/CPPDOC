@@ -6,7 +6,7 @@
 
 /*
 
-	// Prender para so poder criar quando tiver vagas
+	// 
 	
 	// 
 */
@@ -37,17 +37,17 @@ int main(){
 	string matriculas[qtd];
 	bool flag, equals;
 	Aluno aluno[qtd];
-	int contID = 0, res, cont = 0, x, r, indice;
+	int br = 0, res, cont = 0, x, indice;
 	do{
 		cout << "------------------------------------------------------------------------------------------------------------------\n";
-		cout << "\n\t\t\t\t\tCADASTRO DE ALUNO\t\t\tAlunos:" << cont << "\t\t Vagas: " << qtd - cont<< endl;
+		cout << "\n\t\t\t\t\tCADASTRO DE ALUNO\t\t\tAlunos:" << br << "\t\t Vagas: " << qtd - br << endl;
 		cout << "\n------------------------------------------------------------------------------------------------------------------\n";
 		cout << "\n\t1-Criar aluno\n\n\t2-Ver alunos\n\n\t3-Atualizar aluno\n\n\t4-Deletar Aluno\n\n\t5-Limpar\n\n\t6-Sair: ";
 		cin >> res;
 		switch(res){
 			case 1:
 				equals = true;
-				if(qtd - cont != 0 ){
+				if(qtd - br != 0 ){
 					getchar();
 					cout << "\n\tDigite o nome do aluno: ";
 	                getline(cin, aluno[cont].nome);
@@ -63,6 +63,7 @@ int main(){
 							aluno[cont].matricula = auxString;
 							matriculas[cont] = auxString;
 							cont++;
+							br++;
 						}else{
 							cout << "\n\tMatricula ja existente!";
 							stop();
@@ -70,7 +71,8 @@ int main(){
 					}else{
 						aluno[cont].matricula = auxString;
 	                	matriculas[cont] = auxString;
-	                	cont++;	
+	                	cont++;
+						br++;
 					}
 	                clear();
 				}else{
@@ -128,7 +130,9 @@ int main(){
 							case 2:
 								getchar();
 								cout << "\n\tDigite a nova matricula do aluno: ";
-								getline(cin, aluno[indice].nome);
+								getline(cin, auxString);
+								matriculas[indice] = auxString;
+								aluno[indice].matricula = auxString;
 								clear();
 								break;
 							case 3:
@@ -163,7 +167,7 @@ int main(){
 					aluno[indice].matricula = " ";
 					aluno[indice].nome = " ";
 					matriculas[indice] = " ";
-					cont--;
+					br--;
 					cout << "\n\n\tO aluno foi deletado com sucesso!";
 					stop();
 				}
