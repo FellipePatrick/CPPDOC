@@ -4,13 +4,6 @@
 
 */
 
-/*
-
-	// 
-	
-	// 
-*/
-
 #include <iostream>
 
 using namespace std;
@@ -99,7 +92,6 @@ int main(){
 				getchar();
 				cout << "\n\tDigite a matricula do aluno que voce que atualizar: ";
 				getline(cin, auxString);
-				//verificar qual é o indice
 				x = 0;
 				flag = true;
 				do{
@@ -142,11 +134,9 @@ int main(){
 				}
 				break;
 			case 4:
-				//Pegar o indice para o vetor de matriculas e de alunos e substituir tudo por ' '
 				getchar();
 				cout << "\n\tDigite a matricula do aluno que voce que excluir: ";
 				getline(cin, auxString);
-				//verificar qual é o indice
 				x = 0;
 				flag = true;
 				do{
