@@ -54,88 +54,196 @@ struct tProduto
 struct tNotaFiscal{
     int numero;
     string data;
-    tProduto itens[1];
+    tProduto itens[2];
     float total;
 };
 
+void clear(){
+    cout << "\n\n\t";
+    system("pause");
+    system("cls");
+}
 void cabecelhoP(string texto, int cont, int qtd){
     cout << "\n----------------------------------------------------------------------------\n";
-	cout << "\t\t\tMENU PRINCIPAL        Cadastrados: " << cont << "  A cadastrar: " << qtd - cont;
+	cout << "\t\t\t"<< texto <<"        Cadastrados: " << cont << "  A cadastrar: " << qtd - cont;
 	cout << "\n----------------------------------------------------------------------------\n";
 }
 
-void cabecelho(string texto){
+void cabecelho(string texto, int cod, string data){
     cout << "\n----------------------------------------------------------------------------\n";
-	cout << "\t\t\t"<<texto;;
+	cout << "\t\t\t"<<texto <<"        Cod: " << cod << "\tdata: " << data;
 	cout << "\n----------------------------------------------------------------------------\n";
 }
 
 
 int main(){
-    int const qtd = 1;
+    int const qtd = 2;
     tNotaFiscal NotasFiscais[qtd];
-    int res, cont = 0;
+    int res, cont = 0, aux, maior, primaryKey[qtd];
+    bool flag = false;
     double soma = 0;
+    string des;
     do{
         cabecelhoP("MENU PRINCIPAL", cont, qtd);
-		cout << "\n\t1-Relatorio de notas Fiscais\n\n\t2-Buscar nota por numero\n\n\t3-Exivir nota com maior valor total";
+		cout << "\n\t1-Relatorio de notas Fiscais\n\n\t2-Buscar nota por numero\n\n\t3-Exibir nota com maior valor total";
 		cout << "\n\n\t4-Exibir a quantidade total vendida de um produto pela descrição\n\n\t5-Exibir media total das notas\n\n\t6-Cadastrar Produto\n\n\t7-Sair: ";
 		cin >> res;
 		switch(res){
 			case 1:
 				if(cont != 0){
-					system("cls");
-					cout << "\n\tDigite a nota fiscal que voc� quer ver de 0 " << cont << ": ";
-					cin >> res;
-					system("cls");
-					if(res >= 0 || res <= qtd){
-						cabecelho("NOTA FISCAL");
-						cout << "\n\tNOME\t\tQUANTIDADE\tPRECO(U)\tTOTAL(P)";
-						for(int i = 0; i < qtd; i++){
-							cout << "\n\t" << NotasFiscais[res].itens[i].descricao << "\t\t" << NotasFiscais[res].itens[i].quantidade << "\t\t" << NotasFiscais[res].itens[i].precoUnitario << " R$";
-							cout << "\t\t" << NotasFiscais[res].itens[i].subTotal << " R$";  
-						}	
-					}
-                    cout << "\n\n";
-                    system("pause");
+                    for(int x = 0; x < cont; x++){
+                        cabecelho("NOTA FISCAL", NotasFiscais[x].numero, NotasFiscais[x].data);
+                        cout << "\n\tNOME\t\tQUANTIDADE\tPRECO(U)\tTOTAL(P)\n";
+                        for(int i = 0; i < qtd; i++){
+                            cout << "\n\n\t" << NotasFiscais[x].itens[i].descricao << "\t\t" << NotasFiscais[x].itens[i].quantidade << "\t\t" << NotasFiscais[x].itens[i].precoUnitario << " R$";
+                            cout << "\t\t" << NotasFiscais[x].itens[i].subTotal << " R$\n\n\t";  
+                        }
+                        cout << "\n\n\t\t\t\t\t\t\t\t"<< NotasFiscais[x].total << " R$\n";	
+                        clear();
+                    }
 				}else{
 					cout << "\n\tNenhum item cadastrado, cadastre!\n\n\t";
-					system("pause");
-					system("cls");
-				}
+                    clear();
+                }
 				break;
 			case 2:
+                flag = false;
+                cout << "\n\tDigite o numero da nota fiscal: ";
+                cin >> res;
+                for(int i = 0; i < cont; i++){
+                    if(NotasFiscais[i].numero == res){
+                        flag = true;
+                        aux = i;
+                    }
+                }
+                if(flag){
+                    system("cls");
+                    cabecelho("NOTA FISCAL", NotasFiscais[aux].numero, NotasFiscais[aux].data);
+                    cout << "\n\tNOME\t\tQUANTIDADE\tPRECO(U)\tTOTAL(P)";
+                    for(int i = 0; i < qtd; i++){
+                            cout << "\n\n\t" << NotasFiscais[aux].itens[i].descricao << "\t\t" << NotasFiscais[aux].itens[i].quantidade << "\t\t" << NotasFiscais[aux].itens[i].precoUnitario << " R$";
+                            cout << "\t\t    " << NotasFiscais[aux].itens[i].subTotal << " R$\n\n\t";  
+                    }
+                    cout << "\n\n\t\t\t\t\t\t\t\t"<< NotasFiscais[aux].total << " R$\n";		
+                }else{
+                    cout << "\n\tNota fiscal não encontrada!";
+                }
+                clear();
 				break;
 			case 3:
+                //EXIBIR NOTA COM MAIOR VALOR TOTAL
+                if(cont != 0){
+                    maior = 0;
+                    for(int i = 0; i < cont; i++){
+                        if(NotasFiscais[i].total > maior){
+                            maior = NotasFiscais[i].total;
+                            aux = i; 
+                        }
+                    }
+                        system("cls");
+                        cabecelho("NOTA FISCAL", NotasFiscais[aux].numero, NotasFiscais[aux].data);
+                        cout << "\n\tNOME\t\tQUANTIDADE\tPRECO(U)\tTOTAL(P)";
+                        for(int i = 0; i < qtd; i++){
+                                cout << "\n\n\t" << NotasFiscais[aux].itens[i].descricao << "\t\t" << NotasFiscais[aux].itens[i].quantidade << "\t\t" << NotasFiscais[aux].itens[i].precoUnitario << " R$";
+                                cout << "\t\t" << NotasFiscais[aux].itens[i].subTotal << " R$\n\n\t";  
+                        }
+                        cout << "\n\n\t\t\t\t\t\t\t\t"<< NotasFiscais[aux].total << " R$\n";		
+                        clear();
+                }else{
+                    cout << "\n\tNenhuma nota fiscal foi cadastrada";
+                    clear();
+                }
 				break;
 			case 4:
+                aux = 0;
+                flag = false;
+                //EXIBIR A QUANTIDADE TOTAL VENDIDA DE UM PRODUTO A PARTIR DA SUA DESCRIÇÃO
+                if(cont != 0){
+                    cout << "\n\tDigite a descrição do produto para a verificação: ";
+                    cin >> des;
+                    for(int i = 0; i < cont; i++){
+                        for(int x = 0; x < qtd; x++){
+                            if(NotasFiscais[i].itens[x].descricao == des){
+                                flag = true;
+                            }
+                        }
+                    }
+                    if(flag){
+                        for(int i = 0; i < cont; i++){
+                            for(int x = 0; x < qtd; x++){
+                                if(NotasFiscais[i].itens[x].descricao == des){
+                                    aux += (NotasFiscais[i].itens[x].subTotal);
+                                }
+                            }
+                        }
+                        cout << "\n\tO total de vendas do produto " << des << " é de: " << aux << " R$";
+                    }else{
+                        cout << "\n\tNenhum Produto foi encontrado com essa descrição!";
+                    }
+                }else{
+                    cout << "\n\tNenhuma nota fiscal foi cadastrada";
+                }
+                clear();
 				break;
 			case 5:
-                cout << "\noi";
-                system("cls");
+                soma = 0;
+                //EXIBIR MÉDIA DO TOTAL DAS NOTAS 
+                if(cont != 0){
+                    cabecelho("NOTAS FISCAIS", 0, "0000");
+                    cout << endl;
+                    for(int i = 0; i < cont; i++){
+                        cout <<"\n\t" << NotasFiscais[i].numero << "\t" << NotasFiscais[i].data << "\t\t\t" << NotasFiscais[i].total;
+                        soma += NotasFiscais[i].total;
+                    }
+                    cout << "\n\n\tTotal: " << soma/(cont+1);
+                }else{
+                    cout << "\n\tNenhuma nota fiscal foi cadastrada!";
+                }
+                clear();
 				break;
 			case 6:
-				soma = 0;
-				cout << "\n\tDigite o numero da nota fiscal: ";
-                cin >> NotasFiscais[cont].numero;
-                getchar();
-				cout << "\n\tDigite a data da nota fiscal: ";
-				getline(cin, NotasFiscais[cont].data);
-				for(int i = 0; i < qtd; i++){
-					cout << "\n\tDigite a descricao do produto " << i + 1 << ": ";
-					getline(cin, NotasFiscais[cont].itens[i].descricao);
-					cout << "\n\tDigite a quantidade do produto " << i + 1<< ": ";
-                    cin >> NotasFiscais[cont].itens[i].quantidade;
+                flag = false;
+				if(cont <= qtd){
+                    soma = 0;
+                    do{
+                        flag = false;
+                        cout << "\n\tDigite o numero da nota fiscal: ";
+                        cin >> res;
+                        if(cont != 0 ){
+                                for(int i = 0; i < cont; i++){
+                                    if(primaryKey[i] == res){
+                                        flag = true;
+                                    }
+                                }   
+                        }
+                        if(flag){
+                            cout << "\n\tEsse numero de nota fiscal ja existe, digite outro!\n";
+                        }
+                    }while(flag);
+                    primaryKey[cont] = res;
+                    NotasFiscais[cont].numero = res;                    
                     getchar();
-					cout << "\n\tDigite o preco unitario do produto " << i + 1 << ": ";
-                    cin >> NotasFiscais[cont].itens[i].precoUnitario;
-					getchar();
-                    NotasFiscais[cont].itens[i].subTotal = NotasFiscais[cont].itens[i].precoUnitario * NotasFiscais[cont].itens[i].quantidade;
-					soma+= NotasFiscais[cont].itens[i].subTotal;
-					system("cls");
-				}
-				NotasFiscais[cont].total = soma;
-				cont++;
+                    cout << "\n\tDigite a data da nota fiscal: ";
+                    getline(cin, NotasFiscais[cont].data);
+                    for(int i = 0; i < qtd; i++){
+                        cout << "\n\tDigite a descricao do produto " << i + 1 << ": ";
+                        getline(cin, NotasFiscais[cont].itens[i].descricao);
+                        cout << "\n\tDigite a quantidade do produto " << i + 1<< ": ";
+                        cin >> NotasFiscais[cont].itens[i].quantidade;
+                        getchar();
+                        cout << "\n\tDigite o preco unitario do produto " << i + 1 << ": ";
+                        cin >> NotasFiscais[cont].itens[i].precoUnitario;
+                        getchar();
+                        NotasFiscais[cont].itens[i].subTotal = NotasFiscais[cont].itens[i].precoUnitario * NotasFiscais[cont].itens[i].quantidade;
+                        soma+= NotasFiscais[cont].itens[i].subTotal;
+                        system("cls");
+                    }
+                    NotasFiscais[cont].total = soma;
+                    cont++;
+                }else{
+                    cout << "\n\t\tLimite de notas fiscais para serem cadastradas esgotado!";
+                    clear();
+                }
 				break;
 		}
     }while(res != 7);
