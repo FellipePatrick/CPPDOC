@@ -154,9 +154,12 @@ int main(){
                		cin >> res;
                 	clear();
 				}else{
-					aluno[indice].matricula = " ";
-					aluno[indice].nome = " ";
-					matriculas[indice] = " ";
+					// for 
+					for(int i = indice; i < br; i++){
+						aluno[i].matricula = aluno[i+1].matricula;
+						aluno[i].nome = aluno[i+1].nome;
+						matriculas[i] = aluno[i+1].matricula;	
+					}
 					br--;
 					cout << "\n\n\tO aluno foi deletado com sucesso!";
 					stop();

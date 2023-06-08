@@ -16,35 +16,28 @@ int main(){
     
     int const a = 3, b = 2;
     
-    int A[a][b], i, j, aux, cont = 0;
+    int A[a][b], i, j, aux, cont = 0, soma = 0;
     
-    bool flag;
+    bool flag[a][b];
 
     for(i = 0; i < a; i++){
         for(j = 0; j < b; j++){
-            cout << "\nInforme o valor da coluna " << j << " na linha " << i << ": ";
-            cin >> A[i][j];
+            cout << "\nInforme na coluna " << i << " linha " << j << " o valor: ";
+            cin >> A[a][b];
+            flag[a][b] = false;
         }
     }
-    
     for(i = 0; i < a; i++){
-        flag = false;
-        cont = 0;
+        aux = A[i][cont];
         for(j = 0; j < b; j++){
-            aux = A[i][j];
-            for(int n = 0; n < a; n++){
-                for(int x = 0; x < b; x++){
-                    cout << "\naux = " << aux << " A = " << A[n][x];
-                    if(aux == A[n][x]){
-                        flag = true;
-                        cont++;
-                    }
-                }
+            if(aux == A[i][j] && flag[i][j] == false){
+                soma++;
+                flag[i][j] = true;
+                cout << "\nO numero " << aux << " aparece " << soma << " vezes!\n";
             }
         }
-        if (flag == true){
-            cout << "\nO numero " << aux << " tem numero repitidos, e o numero de vezes é: " << cont;
-        }
+        cont++;
+        soma = 0;
     }
 
 }
