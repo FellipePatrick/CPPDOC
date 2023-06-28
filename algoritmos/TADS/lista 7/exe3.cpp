@@ -3,7 +3,6 @@
     retorna a soma de todos os números inteiros contidos no intervalo [n1,n2]. Use esta 
     função em um programa que lê n1 e n2 do usuário e imprime a soma
 */
-
 #include <iostream>
 using namespace std;
 int returnS(int n1, int n2);
