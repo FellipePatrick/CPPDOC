@@ -3,7 +3,6 @@
  Permitir o usuário escolher se quer FLOAT (precisão simples) ou DOUBLE (precisão dupla). 
  ||| Neste mesmo sistema, permitir também usuário digitar um número binário fracionário e exibir o decimal fracionário equivalente (o que a calculadora do windows não faz)
 */
-
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -62,16 +61,18 @@ int main(){
       {
         case 'f':
           int vetor[32];
+          cout <<"\n\tDigite abaixo todos os bits na representacao IEEE754 para obter seu equivalente em decimal!\n";
           for(int i = 0; i < 32; i++){
-            cout << "\t";
+            cout << "\t:";
             cin >> vetor[i];
           }
           cout << "\n\n\tNumero: " << erro(vetor, 'f', false);
           break;
         case 'd':
           int vetorD[64];
+          cout <<"\n\tDigite abaixo todos os bits na representacao IEEE754 para obter seu equivalente em decimal!\n";
           for(int i = 0; i < 64; i++){
-            cout << "\t";
+            cout << "\t:";
             cin >> vetorD[i];
           }
           cout << "\n\n\tNumero: " << erro(vetorD, 'd', false);
@@ -117,7 +118,7 @@ void padraoIEEE(int *v, int numero, double n, char letra){
     if(letra == 'd'){
         tamanhoM = 12;
         tamanhoFinalE = 12;
-        tamanhoFinalM = 62;
+        tamanhoFinalM = 64;
         expo = 1023;
     }else{
       if(letra == 'f'){
@@ -130,10 +131,10 @@ void padraoIEEE(int *v, int numero, double n, char letra){
     cout << "\n\t";
     aux = (tamanhoN(numero) - 1);
     int e =  aux + expo;
-    aux = tamanhoM-2;
+    aux = tamanhoM-2; // 2^7 ou 2^10
     cout << "|" << v[0] << "|";
-    for(int i = 1; i < tamanhoFinalE; i++){
-      if(e >= pow(2, aux)){
+    for(int i = 1; i < tamanhoFinalE; i++){ // escreve o expoente
+      if(e >= pow(2, aux)){ 
         v[i] = 1;
         e = e - pow(2, aux);
       }else{
@@ -145,8 +146,8 @@ void padraoIEEE(int *v, int numero, double n, char letra){
     cout << "|";
     double ref = n - numero;
     aux = tamanhoFinalE;
-    for(int i = (tamanhoN(numero) - 1); i >= 0; i--){ // escreve o expoente
-      if(numero >= pow(2,i)){
+    for(int i = (tamanhoN(numero) - 1); i >= 0; i--){ // define os numeros da mantissa retirando o 1. -> ultimo positivo apos a virgula
+      if(numero >= pow(2,i)){       // 1.111
         v[aux] = 1;
         numero -= pow(2, i);
       }else{
@@ -157,7 +158,7 @@ void padraoIEEE(int *v, int numero, double n, char letra){
       }
       aux++;
     }
-  for(int i = aux; i < tamanhoFinalM; i++){ // escreve a mantissa
+  for(int i = aux; i < (tamanhoFinalM+1); i++){ // escreve a mantissa
       ref *= 2;
       if(ref >= 1){
         v[i] = 1;
@@ -188,7 +189,7 @@ double erro(int *v, char letra, bool flag){
     }
   }
   //pega o tamanho do expoente
-  tamanhoE = tamanhoFinalE - 2;
+  tamanhoE = tamanhoFinalE - 2; // 7, 6, 5, 4....
   for(i = 1; i < tamanhoFinalE; i++){
     if(v[i] == 1){
        e += pow(2, tamanhoE);
