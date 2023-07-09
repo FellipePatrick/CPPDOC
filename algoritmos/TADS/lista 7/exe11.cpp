@@ -131,7 +131,6 @@ void multa(float velocidade, float velocidadeP){
     }
     cout << endl;
 }
-
 float retornaSalario(float salario, int filhos){
     if(filhos >= 5){
         salario = salario/2;
